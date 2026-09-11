@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+
+const tools = [
+  {
+    name: "ツール名1",
+    desc: "内容をここに記入。自作CLIツールの説明。",
+    version: "v0.0.0",
+    tags: ["Python", "CLI"],
+    url: "#",
+  },
+  {
+    name: "ツール名2",
+    desc: "内容をここに記入。自作CLIツールの説明。",
+    version: "v0.0.0",
+    tags: ["C", "CLI"],
+    url: "#",
+  },
+  {
+    name: "ツール名3",
+    desc: "内容をここに記入。自作CLIツールの説明。",
+    version: "v0.0.0",
+    tags: ["TypeScript"],
+    url: "#",
+  },
+];
+
+const downloadIcon = `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />`;
+---
+
+<html lang="ja" class="w-full">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Downloads | RedFalcon72</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+	</head>
+	<body class="bg-bg text-text min-h-screen flex flex-col font-sans text-[13px] sm:text-[14px] antialiased selection:bg-emerald-500/20 selection:text-emerald-300 relative w-full max-w-full">
+
+		<!-- 背景発光 -->
+		<div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[300px] sm:w-[1000px] h-[300px] sm:h-[500px] bg-gradient-to-tr from-emerald-600/15 via-teal-500/10 to-indigo-600/15 blur-[100px] sm:blur-[140px] pointer-events-none -z-10 rounded-full"></div>
+		<div class="fixed top-1/2 right-0 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-emerald-500/5 blur-[100px] sm:blur-[160px] pointer-events-none -z-10 rounded-full"></div>
+
+		<!-- ヘッダー -->
+		<header class="sticky top-0 z-50 w-full bg-bg/90 backdrop-blur-md border-b border-border/80 px-3 sm:px-16 py-3.5 sm:py-5 flex justify-between items-center shrink-0" aria-label="メインヘッダー">
+			<a href="/" class="font-mono text-base sm:text-lg font-bold tracking-wider text-text hover:opacity-80 transition-opacity flex items-center gap-1.5 sm:gap-3 py-1 shrink-0">
+				<span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shrink-0 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+				<span class="sm:hidden">RF72</span>
+				<span class="hidden sm:inline">RedFalcon72</span>
+			</a>
+			<nav class="flex items-center gap-0.5 sm:gap-2 text-[12px] sm:text-base font-mono shrink-0" aria-label="メインナビゲーション">
+				<a href="/" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Top</a>
+				<a href="/profile" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Profile</a>
+				<a href="/posts" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Blog</a>
+				<a href="/downloads" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-text hover:bg-white/[0.05] transition-all">Downloads</a>
+			</nav>
+		</header>
+
+		<main class="w-full max-w-full flex-1 px-4 sm:px-16 pt-10 sm:pt-14 pb-12 space-y-16 sm:space-y-20 overflow-x-hidden">
+
+			<!-- 01 / 見出し -->
+			<section class="w-full space-y-6" aria-label="ダウンロード紹介">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">01 / Downloads</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+				<p class="text-sm sm:text-base text-muted leading-relaxed max-w-3xl">
+					In progress: ダウンロード配布ページ。
+				</p>
+			</section>
+
+			<!-- 02 / ツール一覧 -->
+			<section class="w-full space-y-6" aria-label="ツール一覧">
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					{tools.map((tool) => (
+						<div class="rounded-2xl bg-surface border border-border p-5 space-y-4 hover:border-emerald-500/30 transition-colors flex flex-col justify-between">
+							<div class="space-y-2">
+								<div class="flex items-center justify-between gap-2">
+									<h3 class="text-sm font-semibold text-text">{tool.name}</h3>
+									<span class="text-[11px] font-mono text-muted flex-shrink-0">{tool.version}</span>
+								</div>
+								<p class="text-sm text-muted leading-relaxed">{tool.desc}</p>
+								<div class="flex flex-wrap gap-1.5 pt-1">
+									{tool.tags.map((tag) => (
+										<span class="px-2.5 py-1 rounded-md bg-white/[0.03] border border-border text-xs text-muted font-mono">{tag}</span>
+									))}
+								</div>
+							</div>
+							<a href={tool.url} class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-mono px-3 py-2 hover:bg-emerald-500/15 transition-colors">
+								<span set:html={`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${downloadIcon}</svg>`} />
+								Download
+							</a>
+						</div>
+					))}
+				</div>
+			</section>
+
+		</main>
+
+		<footer class="w-full px-4 sm:px-16 py-6 flex justify-between items-center text-xs font-mono text-muted border-t border-border/60 shrink-0">
+			<span>RedFalcon72 — Developer Portal</span>
+			<span>© 2026</span>
+		</footer>
+
+	</body>
+</html>

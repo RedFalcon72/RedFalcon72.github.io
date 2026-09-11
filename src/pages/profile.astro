@@ -1,0 +1,248 @@
+---
+import '../styles/global.css';
+
+const skillGroups = [
+  {
+    label: "プログラミング言語",
+    items: ["C", "JavaScript", "TypeScript", "Python3", "HTML5 + CSS3", "SQL", "Scheme"],
+    icon: `<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>`,
+  },
+  {
+    label: "フレームワーク",
+    items: ["React", "FastAPI"],
+    icon: `<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>`,
+  },
+  {
+    label: "ライブラリ",
+    items: ["pandas", "scikit-learn", "NumPy", "Matplotlib"],
+    icon: `<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line>`,
+  },
+  {
+    label: "ツール",
+    items: ["Git", "GitHub", "SQLite", "Windows", "Linux"],
+    icon: `<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>`,
+  },
+];
+
+const qualifications = ["TOEIC 555点", "ITパスポート"];
+const achievements = [
+  { title: "実績・経歴の項目1", desc: "内容をここに記入", date: "2026" },
+  { title: "実績・経歴の項目2", desc: "内容をここに記入", date: "2025" },
+];
+
+const interests = ["AI", "機械学習"];
+
+const contacts = [
+  {
+    label: "GitHub",
+    value: "@RedFalcon72",
+    url: "https://github.com/RedFalcon72",
+    icon: `<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.1-.5 2V21" />`,
+  },
+  {
+    label: "X",
+    value: "@RedFalcon72",
+    url: "#",
+    icon: `<path d="M4 4l16 16M20 4L4 20" />`,
+  },
+  {
+    label: "Email",
+    value: "contact@example.com",
+    url: "mailto:contact@example.com",
+    icon: `<path d="M4 4h16v16H4z" /><path d="m4 6 8 6 8-6" />`,
+  },
+];
+---
+
+<html lang="ja" class="w-full">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Profile | RedFalcon72</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+	</head>
+	<body class="bg-bg text-text min-h-screen flex flex-col font-sans text-[13px] sm:text-[14px] antialiased selection:bg-emerald-500/20 selection:text-emerald-300 relative w-full max-w-full">
+
+		<!-- 背景発光 -->
+		<div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[300px] sm:w-[1000px] h-[300px] sm:h-[500px] bg-gradient-to-tr from-emerald-600/15 via-teal-500/10 to-indigo-600/15 blur-[100px] sm:blur-[140px] pointer-events-none -z-10 rounded-full"></div>
+		<div class="fixed top-1/2 right-0 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-emerald-500/5 blur-[100px] sm:blur-[160px] pointer-events-none -z-10 rounded-full"></div>
+
+		<!-- ヘッダー（トップページと共通の構成） -->
+		<header class="sticky top-0 z-50 w-full bg-bg/90 backdrop-blur-md border-b border-border/80 px-3 sm:px-16 py-3.5 sm:py-5 flex justify-between items-center shrink-0" aria-label="メインヘッダー">
+			<a href="/" class="font-mono text-base sm:text-lg font-bold tracking-wider text-text hover:opacity-80 transition-opacity flex items-center gap-1.5 sm:gap-3 py-1 shrink-0">
+				<span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shrink-0 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+				<span class="sm:hidden">RF72</span>
+				<span class="hidden sm:inline">RedFalcon72</span>
+			</a>
+			<nav class="flex items-center gap-0.5 sm:gap-2 text-[12px] sm:text-base font-mono shrink-0" aria-label="メインナビゲーション">
+				<a href="/" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Top</a>
+				<a href="/profile" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-text hover:bg-white/[0.05] transition-all">Profile</a>
+				<a href="/posts" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Blog</a>
+				<a href="/downloads" class="px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-muted hover:text-text hover:bg-white/[0.05] transition-all">Downloads</a>
+			</nav>
+		</header>
+
+		<main class="w-full max-w-full flex-1 px-4 sm:px-16 pt-10 sm:pt-14 pb-12 space-y-16 sm:space-y-20 overflow-x-hidden">
+
+			<!-- 01 / 基本情報・自己紹介（トップページのProfileセクションを拡張） -->
+			<section class="w-full space-y-8 sm:space-y-10" aria-label="基本情報">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">01 / Profile</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-16">
+					<div class="relative p-1 rounded-3xl bg-gradient-to-b from-emerald-500/30 via-teal-500/10 to-transparent flex-shrink-0 shadow-2xl mx-auto lg:mx-0">
+						<div class="w-48 h-48 sm:w-80 sm:h-80 rounded-[22px] bg-surface overflow-hidden relative">
+							<img src="/icon.jpeg" alt="RedFalcon72 Profile" class="w-full h-full object-cover" />
+						</div>
+					</div>
+
+					<div class="space-y-5 sm:space-y-6 w-full pt-2 text-left">
+						<div class="space-y-2">
+							<h1 class="text-3xl sm:text-7xl font-['Plus_Jakarta_Sans'] font-extrabold text-text tracking-tight break-all">
+								<span class="bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 bg-clip-text text-transparent">RedFalcon72</span>
+							</h1>
+							<p class="text-base sm:text-lg font-mono bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent font-medium">
+								Computer Science Student
+							</p>
+						</div>
+
+						<p class="text-sm sm:text-base text-muted leading-relaxed max-w-3xl font-normal">
+							機械学習・データ分析・C言語の基礎を中心に学習中。自作ツールの配布、開発実績、および日々の技術メモを蓄積・公開するための個人Web拠点。ここでは経歴やスキル、興味関心をまとめています。
+						</p>
+
+						<div class="flex flex-wrap gap-2.5 sm:gap-3 pt-1 sm:pt-2 font-mono text-xs">
+							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted flex items-center gap-2">
+								<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Location: Japan
+							</span>
+							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">
+								Focus: ML / Data Analysis / C
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 02 / スキル・資格 -->
+			<section class="w-full space-y-6" aria-label="スキル・資格">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">02 / Skills</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+					{skillGroups.map((group) => (
+						<div class="rounded-2xl bg-surface border border-border p-5 space-y-3.5 hover:border-emerald-500/30 transition-colors">
+							<div class="flex items-center gap-2.5">
+								<span
+									class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0"
+									set:html={`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${group.icon}</svg>`}
+								/>
+								<span class="text-sm font-semibold text-text">{group.label}</span>
+							</div>
+							<div class="flex flex-wrap gap-1.5">
+								{group.items.map((item) => (
+									<span class="px-2.5 py-1 rounded-md bg-white/[0.03] border border-border text-xs text-muted font-mono">{item}</span>
+								))}
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div class="rounded-xl bg-surface border border-border px-5 py-4 space-y-2">
+					<span class="text-[11px] font-mono text-emerald-400 tracking-wide uppercase">資格</span>
+					<div class="flex flex-wrap gap-2">
+						{qualifications.map((item) => (
+							<span class="px-2.5 py-1 rounded-md bg-emerald-500/[0.06] border border-emerald-500/20 text-xs text-emerald-300">{item}</span>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<!-- 03 / 経歴・実績 -->
+			<section class="w-full space-y-6" aria-label="経歴・実績">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">03 / Achievements</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="flex flex-col divide-y divide-border">
+					{achievements.map((item) => (
+						<div class="py-4 first:pt-0 flex items-start justify-between gap-4">
+							<div>
+								<h4 class="text-sm font-semibold text-text">{item.title}</h4>
+								<p class="text-sm text-muted mt-1">{item.desc}</p>
+							</div>
+							<span class="text-[11px] font-mono text-muted flex-shrink-0">{item.date}</span>
+						</div>
+					))}
+				</div>
+			</section>
+
+			<!-- 04 / 現在の学習・関心（コードブロック風） -->
+			<section class="w-full space-y-6" aria-label="現在の学習・関心">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">04 / Now</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="rounded-2xl bg-[#050506] border border-border overflow-hidden">
+					<div class="flex items-center gap-1.5 px-4 py-2.5 border-b border-border/70">
+						<span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+						<span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+						<span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+					</div>
+					<pre class="p-5 sm:p-6 overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed"><code><span class="text-teal-300">const</span> <span class="text-text">redfalcon72</span> <span class="text-muted">=</span> <span class="text-muted">{"{"}</span>
+  <span class="text-emerald-400">currentlyLearning</span><span class="text-muted">:</span> <span class="text-muted">[</span><span class="text-orange-300">"機械学習"</span><span class="text-muted">,</span> <span class="text-orange-300">"データ分析"</span><span class="text-muted">,</span> <span class="text-orange-300">"C言語"</span><span class="text-muted">]</span><span class="text-muted">,</span>
+  <span class="text-emerald-400">workingOn</span><span class="text-muted">:</span> <span class="text-orange-300">"RedFalcon72（このサイト）"</span><span class="text-muted">,</span>
+  <span class="text-emerald-400">askMeAbout</span><span class="text-muted">:</span> <span class="text-muted">[</span><span class="text-orange-300">"ML"</span><span class="text-muted">,</span> <span class="text-orange-300">"Data Analysis"</span><span class="text-muted">,</span> <span class="text-orange-300">"C"</span><span class="text-muted">]</span><span class="text-muted">,</span>
+<span class="text-muted">{"}"}</span><span class="text-muted">;</span></code></pre>
+				</div>
+			</section>
+
+			<!-- 05 / 趣味・関心ごと -->
+			<section class="w-full space-y-6" aria-label="趣味・関心">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">05 / Interests</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="flex flex-wrap gap-2.5 font-mono text-xs">
+					{interests.map((tag) => (
+						<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">{tag}</span>
+					))}
+				</div>
+			</section>
+
+			<!-- 06 / 連絡先・SNS -->
+			<section class="w-full space-y-6" aria-label="連絡先">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">06 / Contact</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
+				</div>
+
+				<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+					{contacts.map((c) => (
+						<a href={c.url} target="_blank" rel="noopener noreferrer" class="group flex items-center gap-3 rounded-xl bg-surface border border-border p-4 hover:border-emerald-500/40 hover:bg-white/[0.03] transition-all">
+							<span class="w-9 h-9 rounded-lg bg-white/[0.04] border border-border flex items-center justify-center text-muted group-hover:text-emerald-400 transition-colors flex-shrink-0" set:html={`<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg>`} />
+							<span class="min-w-0">
+								<span class="block text-sm font-medium text-text">{c.label}</span>
+								<span class="block text-[11px] font-mono text-muted truncate">{c.value}</span>
+							</span>
+						</a>
+					))}
+				</div>
+			</section>
+
+		</main>
+
+		<footer class="w-full px-4 sm:px-16 py-6 flex justify-between items-center text-xs font-mono text-muted border-t border-border/60 shrink-0">
+			<span>RedFalcon72 — Developer Portal</span>
+			<span>© 2026</span>
+		</footer>
+
+	</body>
+</html>
