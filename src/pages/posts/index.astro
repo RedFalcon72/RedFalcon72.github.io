@@ -1,24 +1,16 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import '../../styles/global.css';
 
-export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
-}
-
-const { post } = Astro.props;
-const { Content } = await render(post);
+const allPosts = await getCollection('posts');
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <html lang="ja" class="w-full">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{post.data.title} | RedFalcon72</title>
+		<title>Blog | RedFalcon72</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -26,6 +18,7 @@ const { Content } = await render(post);
 	<body class="bg-bg text-text min-h-screen flex flex-col font-sans text-[13px] sm:text-[14px] antialiased selection:bg-emerald-500/20 selection:text-emerald-300 relative w-full max-w-full">
 
 		<div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[300px] sm:w-[1000px] h-[300px] sm:h-[500px] bg-gradient-to-tr from-emerald-600/15 via-teal-500/10 to-indigo-600/15 blur-[100px] sm:blur-[140px] pointer-events-none -z-10 rounded-full"></div>
+		<div class="fixed top-1/2 right-0 w-[250px] sm:w-[500px] h-[250px] sm:h-[500px] bg-emerald-500/5 blur-[100px] sm:blur-[160px] pointer-events-none -z-10 rounded-full"></div>
 
 		<header class="sticky top-0 z-50 w-full bg-bg/90 backdrop-blur-md border-b border-border/80 px-3 sm:px-16 py-3.5 sm:py-5 flex justify-between items-center shrink-0" aria-label="メインヘッダー">
 			<a href="/" class="font-mono text-base sm:text-lg font-bold tracking-wider text-text hover:opacity-80 transition-opacity flex items-center gap-1.5 sm:gap-3 py-1 shrink-0">
@@ -41,26 +34,41 @@ const { Content } = await render(post);
 			</nav>
 		</header>
 
-		<main class="w-full max-w-full flex-1 px-4 sm:px-16 pt-10 sm:pt-14 pb-12 overflow-x-hidden">
-			<article class="w-full max-w-3xl mx-auto space-y-8">
-				<a href="/posts" class="text-xs font-mono text-muted hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5">&larr; Blog一覧へ</a>
+		<main class="w-full max-w-full flex-1 px-4 sm:px-16 pt-10 sm:pt-14 pb-12 space-y-16 sm:space-y-20 overflow-x-hidden">
 
-				<div class="space-y-3">
-					<h1 class="text-2xl sm:text-4xl font-['Plus_Jakarta_Sans'] font-extrabold text-text tracking-tight">{post.data.title}</h1>
-					<p class="text-xs font-mono text-muted">{post.data.date.toLocaleDateString('ja-JP')}</p>
+			<section class="w-full space-y-6" aria-label="ブログ紹介">
+				<div class="flex items-center gap-4">
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">01 / Blog</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
 				</div>
+				<p class="text-sm sm:text-base text-muted leading-relaxed max-w-3xl">
+					技術メモ・学習記録の一覧。
+				</p>
+			</section>
 
-				<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
-
-				<div class="prose prose-invert prose-sm sm:prose-base max-w-none prose-headings:font-['Plus_Jakarta_Sans'] prose-a:text-emerald-400 prose-code:font-mono prose-pre:bg-[#050506] prose-pre:border prose-pre:border-border">
-					<Content />
+			<section class="w-full space-y-4" aria-label="記事一覧">
+				<div class="flex flex-col divide-y divide-border rounded-2xl bg-surface border border-border overflow-hidden">
+					{posts.map((post) => (
+						<a href={`/posts/${post.id}`} class="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-5 hover:bg-white/[0.03] transition-colors">
+							<span class="text-[11px] font-mono text-muted flex-shrink-0 sm:w-24">{post.data.date.toLocaleDateString('ja-JP')}</span>
+							<div class="flex-1 min-w-0 space-y-1.5">
+								<h3 class="text-sm font-semibold text-text group-hover:text-emerald-300 transition-colors">{post.data.title}</h3>
+								{post.data.description && (
+									<p class="text-sm text-muted leading-relaxed">{post.data.description}</p>
+								)}
+								{post.data.tags && (
+									<div class="flex flex-wrap gap-1.5 pt-0.5">
+										{post.data.tags.map((tag) => (
+											<span class="px-2 py-0.5 rounded-md bg-white/[0.03] border border-border text-[11px] text-muted font-mono">{tag}</span>
+										))}
+									</div>
+								)}
+							</div>
+						</a>
+					))}
 				</div>
+			</section>
 
-				<!-- 下部広告枠 -->
-				<div class="rounded-xl border border-dashed border-border/70 p-6 text-center text-xs font-mono text-muted/60">
-					Ad Slot
-				</div>
-			</article>
 		</main>
 
 		<footer class="w-full px-4 sm:px-16 py-6 flex justify-between items-center text-xs font-mono text-muted border-t border-border/60 shrink-0">
