@@ -7,9 +7,28 @@ const posts = allPosts
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 	.slice(0, 3);
 
+const hero = {
+	badge: 'Information Science & Computer Engineering',
+	name: 'RedFalcon72',
+	suffix: '— Official',
+};
+
+const profile = {
+	name: 'RedFalcon72',
+	role: 'Computer Science Student',
+	description: '機械学習・データ分析・C言語の基礎を中心に学習中。自作ツールの配布、開発実績、および日々の技術メモを蓄積・公開するための個人Web拠点。',
+	location: 'Japan',
+	focus: 'ML / Data Analysis / C',
+};
+
 const downloads = [
 	{ name: "tool_1", desc: "説明", lang: "Python", stars: "v0.0.0" },
 	{ name: "tool_2", desc: "説明", lang: "C", stars: "v0.0.0" },
+];
+
+const links = [
+	{ label: 'GitHub', url: 'https://github.com/RedFalcon72', external: true },
+	{ label: 'X', url: 'https://x.com/RFalcon7254127', external: false },
 ];
 ---
 
@@ -28,10 +47,10 @@ const downloads = [
 					<div class="relative z-10 w-full flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-6">
 						<div class="space-y-1.5 sm:space-y-2">
 							<span class="inline-flex items-center gap-2 px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] sm:text-xs font-mono font-medium backdrop-blur-md">
-								Information Science & Computer Engineering
+								{hero.badge}
 							</span>
 							<h1 class="text-2xl sm:text-6xl font-['Plus_Jakarta_Sans'] font-extrabold text-text tracking-tight leading-none break-all">
-								RedFalcon72 <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent block sm:inline mt-1 sm:mt-0">— Official</span>
+								{hero.name} <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent block sm:inline mt-1 sm:mt-0">{hero.suffix}</span>
 							</h1>
 						</div>
 					</div>
@@ -63,23 +82,23 @@ const downloads = [
 					<div class="space-y-5 sm:space-y-6 w-full pt-2 text-left">
 						<div class="space-y-2">
 							<h3 class="text-3xl sm:text-7xl font-['Plus_Jakarta_Sans'] font-extrabold text-text tracking-tight break-all">
-								<span class="bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 bg-clip-text text-transparent">RedFalcon72</span>
+								<span class="bg-gradient-to-r from-red-500 via-rose-400 to-orange-400 bg-clip-text text-transparent">{profile.name}</span>
 							</h3>
 							<p class="text-base sm:text-lg font-mono bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent font-medium">
-								Computer Science Student
+								{profile.role}
 							</p>
 						</div>
 
 						<p class="text-sm sm:text-base text-muted leading-relaxed max-w-5xl font-normal">
-							機械学習・データ分析・C言語の基礎を中心に学習中。自作ツールの配布、開発実績、および日々の技術メモを蓄積・公開するための個人Web拠点。
+							{profile.description}
 						</p>
 
 						<div class="flex flex-wrap gap-2.5 sm:gap-3 pt-1 sm:pt-2 font-mono text-xs">
 							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted flex items-center gap-2">
-								<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Location: Japan
+								<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Location: {profile.location}
 							</span>
 							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">
-								Focus: ML / Data Analysis / C
+								Focus: {profile.focus}
 							</span>
 						</div>
 					</div>
@@ -165,12 +184,11 @@ const downloads = [
 				</div>
 
 				<div class="flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm pt-1">
-					<a href="https://github.com/RedFalcon72" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-text transition-colors flex items-center gap-1.5">
-						GitHub ↗
-					</a>
-					<a href="https://x.com/RFalcon7254127" class="text-muted hover:text-text transition-colors flex items-center gap-1.5">
-						X ↗
-					</a>
+					{links.map((link) => (
+						<a href={link.url} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} class="text-muted hover:text-text transition-colors flex items-center gap-1.5">
+							{link.label} ↗
+						</a>
+					))}
 				</div>
 			</section>
 
