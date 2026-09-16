@@ -42,8 +42,6 @@ const links = [
 
 					<img src="/hero_image01.jpeg" alt="Hero Background" class="absolute inset-0 w-full h-full object-cover opacity-70" />
 
-					<div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent"></div>
-
 					<div class="relative z-10 w-full flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-6">
 						<div class="space-y-1.5 sm:space-y-2">
 							<span class="inline-flex items-center gap-2 px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] sm:text-xs font-mono font-medium backdrop-blur-md">
@@ -119,12 +117,15 @@ const links = [
 					<div class="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-4">
 						<!-- 最新記事 -->
 						<a href={`/posts/${posts[0].id}`} class="group relative rounded-2xl sm:rounded-3xl bg-surface border border-border p-5 sm:p-8 flex flex-col justify-end min-h-[200px] sm:min-h-[260px] overflow-hidden">
+							<img src="/hero_image01.jpeg" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-55 transition-transform duration-700 group-hover:scale-105" />
 							<div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/[0.06] blur-[100px] pointer-events-none"></div>
-							<span class="text-[11px] font-mono text-emerald-400 mb-2 sm:mb-3">{posts[0].data.category}</span>
-							<h3 class="text-lg sm:text-2xl font-['Plus_Jakarta_Sans'] font-bold text-text leading-snug group-hover:text-emerald-300 transition-colors max-w-md">
-								{posts[0].data.title}
-							</h3>
-							<span class="text-xs font-mono text-muted mt-3 sm:mt-4">{posts[0].data.date.toLocaleDateString('ja-JP').replaceAll('/', '.')}</span>
+							<div class="relative z-10">
+								<span class="text-[11px] font-mono text-emerald-400 mb-2 sm:mb-3 block">{posts[0].data.category}</span>
+								<h3 class="text-lg sm:text-2xl font-['Plus_Jakarta_Sans'] font-bold text-text leading-snug group-hover:text-emerald-300 transition-colors max-w-md">
+									{posts[0].data.title}
+								</h3>
+								<span class="text-xs font-mono text-muted mt-3 sm:mt-4 block">{posts[0].data.date.toLocaleDateString('ja-JP').replaceAll('/', '.')}</span>
+							</div>
 						</a>
 
 						<!-- 残りの記事 -->
