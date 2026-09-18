@@ -3,7 +3,7 @@ import '../styles/global.css';
 
 interface Props {
 	title: string;
-	activeNav: 'top' | 'profile' | 'blog' | 'downloads';
+	activeNav: 'top' | 'profile' | 'blog' | 'downloads' | 'links';
 	showSecondaryGlow?: boolean;
 }
 
@@ -13,6 +13,7 @@ const navItems = [
 	{ label: 'Profile', href: '/profile', key: 'profile' },
 	{ label: 'Blog', href: '/posts', key: 'blog' },
 	{ label: 'Downloads', href: '/downloads', key: 'downloads' },
+	{ label: 'Link', href: '/links', key: 'links' },
 ] as const;
 const bodyClass = 'bg-bg text-text min-h-screen flex flex-col font-sans text-[13px] sm:text-[14px] antialiased selection:bg-emerald-500/20 selection:text-emerald-300 relative w-full max-w-full';
 const navLinkClass = 'px-2 py-1.5 sm:px-3.5 sm:py-2 rounded-lg hover:bg-white/[0.05] transition-all';

@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const links = [
+	{
+		label: 'GitHub',
+		description: 'ソースコードや開発中のプロジェクト',
+		url: 'https://github.com/RedFalcon72',
+	},
+	{
+		label: 'X',
+		description: '日々の活動や技術メモ',
+		url: 'https://x.com/RFalcon7254127',
+	},
+	{
+		label: 'Email',
+		description: 'お問い合わせ・ご連絡',
+		url: 'mailto:contact@example.com',
+	},
+];
+---
+
+<BaseLayout title="Link" activeNav="links">
+	<main class="w-full max-w-full flex-1 px-4 sm:px-16 pt-10 sm:pt-14 pb-12 overflow-x-hidden">
+		<div class="w-full max-w-xl mx-auto space-y-8 sm:space-y-10">
+			<section class="w-full space-y-4 text-center" aria-label="リンク">
+				<div class="flex items-center gap-4">
+					<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent"></div>
+					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">Links</span>
+					<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent"></div>
+				</div>
+				<div class="space-y-2">
+					<h1 class="text-3xl sm:text-5xl font-['Plus_Jakarta_Sans'] font-extrabold text-text tracking-tight">RedFalcon72</h1>
+					<p class="text-sm sm:text-base text-muted leading-relaxed">開発や日々の活動に関するリンクをまとめています。</p>
+				</div>
+			</section>
+
+		<section class="flex flex-col gap-3" aria-label="リンク一覧">
+			{links.map((link) => (
+				<a href={link.url} target={link.url.startsWith('http') ? '_blank' : undefined} rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined} class="group min-h-16 rounded-xl bg-surface border border-border px-5 py-4 flex items-center gap-4 hover:border-emerald-500/40 hover:bg-white/[0.03] transition-colors">
+					<span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-sm flex-shrink-0">↗</span>
+					<span class="flex-1 min-w-0 text-left">
+						<strong class="block text-sm sm:text-base font-semibold text-text">{link.label}</strong>
+						<span class="block mt-1 text-xs text-muted truncate">{link.description}</span>
+					</span>
+					<span class="text-muted group-hover:text-emerald-300 transition-colors text-lg" aria-hidden="true">↗</span>
+				</a>
+			))}
+		</section>
+		</div>
+	</main>
+</BaseLayout>
