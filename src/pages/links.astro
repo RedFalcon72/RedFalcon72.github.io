@@ -19,13 +19,13 @@ const links = [
 	},
 ];
 
-const rainDrops = Array.from({ length: 24 }, (_, index) => ({
-	left: `${(index * 43) % 103 - 2}%`,
-	delay: `${-((index * 0.37) % 5)}s`,
-	duration: `${3.5 + (index % 5) * 0.55}s`,
-	height: `${22 + (index % 6) * 9}px`,
-	code: '01 10 11 00 01 10 01 11',
-}));
+const rainDrops = Array.from({ length: 24 }, (_, index) => {
+	const left = (index * 43) % 103 - 2;
+	const delay = -((index * 0.37) % 5);
+	const duration = 3.5 + (index % 5) * 0.55;
+	const height = 22 + (index % 6) * 9;
+	return { left, delay, duration, height, code: '01 10 11 00 01 10 01 11' };
+});
 ---
 
 <BaseLayout title="Link" activeNav="links">
@@ -35,9 +35,17 @@ const rainDrops = Array.from({ length: 24 }, (_, index) => ({
 			<div class="grid-layer absolute -inset-1/2"></div>
 			<div class="particle-layer absolute inset-0"></div>
 			<div class="rain-layer absolute inset-0">
-				{rainDrops.map((drop) => (
-					<span class="rain-drop" style={`--left: ${drop.left}; --delay: ${drop.delay}; --duration: ${drop.duration}; --height: ${drop.height};`}></span>
-					<span class="code-rain" style={`--left: ${drop.left}; --delay: ${drop.delay}; --duration: ${drop.duration};`}>{drop.code}</span>
+				{rainDrops.map((drop, i) => (
+					<span
+						class="rain-drop"
+						style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s; height:${drop.height}px;`}
+					></span>
+				))}
+				{rainDrops.map((drop, i) => (
+					<span
+						class="code-rain"
+						style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s;`}
+					>{drop.code}</span>
 				))}
 			</div>
 		</div>
@@ -99,34 +107,43 @@ const rainDrops = Array.from({ length: 24 }, (_, index) => ({
 		}
 
 		.rain-layer {
-			mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
 			overflow: hidden;
-			opacity: 0.85;
+			opacity: 0.9;
 		}
 
 		.rain-drop {
 			position: absolute;
-			left: var(--left);
 			top: -12%;
 			width: 2px;
-			height: var(--height);
 			background: linear-gradient(to bottom, transparent, rgb(110 231 183 / 0.95), transparent);
 			filter: drop-shadow(0 0 4px rgb(52 211 153 / 0.6));
-			animation: rain-fall var(--duration) linear var(--delay) infinite;
+			animation-name: rain-fall;
+			animation-duration: var(--duration);
+			animation-delay: var(--delay);
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
 		}
 
 		.code-rain {
-			position: absolute;
-			left: var(--left);
+			position: fixed;
 			top: -20vh;
+			left: var(--left);
 			width: 30px;
-			color: rgb(110 231 183 / 0.5);
-			font: 10px/1.8 'JetBrains Mono', monospace;
+			color: rgb(110 231 183 / 0.92);
+			font-family: 'JetBrains Mono', 'Courier New', monospace;
+			font-size: 12px;
+			line-height: 1.8;
 			letter-spacing: 0.08em;
 			white-space: nowrap;
 			writing-mode: vertical-rl;
-			text-shadow: 0 0 8px rgb(52 211 153 / 0.7);
-			animation: code-fall var(--duration) linear var(--delay) infinite;
+			text-shadow: 0 0 8px rgb(52 211 153 / 0.95), 0 0 18px rgb(52 211 153 / 0.55);
+			animation-name: code-fall;
+			animation-duration: var(--duration);
+			animation-delay: var(--delay);
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			z-index: 1;
+			pointer-events: none;
 		}
 
 		@keyframes aurora-drift {
@@ -159,7 +176,8 @@ const rainDrops = Array.from({ length: 24 }, (_, index) => ({
 		}
 
 		@media (prefers-reduced-motion: reduce) {
-			.aurora-layer, .grid-layer, .particle-layer, .rain-drop, .code-rain { animation: none; }
+			.aurora-layer, .grid-layer, .particle-layer { animation: none; }
+			.rain-drop, .code-rain { animation-duration: 8s; }
 		}
 	</style>
 </BaseLayout>
