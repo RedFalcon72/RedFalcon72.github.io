@@ -38,18 +38,22 @@ const rainDrops = Array.from({ length: 24 }, (_, index) => {
 			<div class="grid-layer absolute -inset-1/2"></div>
 			<div class="particle-layer absolute inset-0"></div>
 			<div class="rain-layer absolute inset-0">
-				{rainDrops.map((drop, i) => (
-					<span
-						class="rain-drop"
-						style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s; height:${drop.height}px;`}
-					></span>
-				))}
-				{rainDrops.map((drop, i) => (
-					<span
-						class="code-rain"
-						style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s;`}
-					>{drop.code}</span>
-				))}
+				<div class="rain-drops">
+					{rainDrops.map((drop) => (
+						<span
+							class="rain-drop"
+							style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s; height:${drop.height}px;`}
+						></span>
+					))}
+				</div>
+				<div class="code-rain-layer">
+					{rainDrops.map((drop) => (
+						<span
+							class="code-rain"
+							style={`left:${drop.left}%; animation-delay:${drop.delay}s; animation-duration:${drop.duration}s;`}
+						>{drop.code}</span>
+					))}
+				</div>
 			</div>
 		</div>
 		<div class="relative z-10 w-full max-w-xl mx-auto space-y-8 sm:space-y-10">
@@ -253,6 +257,10 @@ const rainDrops = Array.from({ length: 24 }, (_, index) => {
 			.rain-drop, .code-rain { animation-duration: 8s; }
 			.link-card, .icon-wrap, .arrow-wrap svg, .link-shine { transition: none; animation: none !important; }
 			.link-card:hover .link-shine { opacity: 1; transform: translateX(100%) rotate(18deg); }
+		}
+
+		@media (max-width: 639px) {
+			.rain-drop:nth-child(n + 15), .code-rain:nth-child(n + 15) { display: none; }
 		}
 	</style>
 </BaseLayout>
