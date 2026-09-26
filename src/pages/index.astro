@@ -5,7 +5,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const allPosts = await getCollection('posts');
 const posts = allPosts
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-	.slice(0, 3);
+	.slice(0, 6);
 
 const hero = {
 	badge: 'Information Science & Computer Engineering',
@@ -28,7 +28,7 @@ const downloads = [
 
 const links = [
 	{ label: 'GitHub', url: 'https://github.com/RedFalcon72', external: true },
-	{ label: 'X', url: 'https://x.com/RFalcon7254127', external: false },
+	{ label: 'X', url: 'https://x.com/RFalcon7254127', external: true },
 ];
 ---
 
@@ -98,6 +98,19 @@ const links = [
 							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">
 								Focus: {profile.focus}
 							</span>
+						</div>
+
+						<div class="flex flex-wrap gap-2.5 pt-1 font-mono text-xs">
+							{links.map((link) => (
+								<a
+									href={link.url}
+									target={link.external ? '_blank' : undefined}
+									rel={link.external ? 'noopener noreferrer' : undefined}
+									class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-3.5 py-2 text-muted transition-colors hover:border-emerald-500/50 hover:text-emerald-300"
+								>
+									{link.label} <span aria-hidden="true">↗</span>
+								</a>
+							))}
 						</div>
 					</div>
 				</div>
@@ -173,22 +186,6 @@ const links = [
 								<p class="text-muted/70">lang: {item.lang}</p>
 							</div>
 						</div>
-					))}
-				</div>
-			</section>
-
-			<!-- 04 / Links セクション -->
-			<section class="w-full space-y-6" aria-label="リンク">
-				<div class="flex items-center gap-4 w-full">
-					<span class="text-xs font-mono text-emerald-400 font-semibold tracking-widest uppercase flex-shrink-0">04 / Links</span>
-					<div class="h-[1px] w-full bg-gradient-to-r from-emerald-500/30 via-border/40 to-transparent"></div>
-				</div>
-
-				<div class="flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm pt-1">
-					{links.map((link) => (
-						<a href={link.url} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener noreferrer' : undefined} class="text-muted hover:text-text transition-colors flex items-center gap-1.5">
-							{link.label} ↗
-						</a>
 					))}
 				</div>
 			</section>
