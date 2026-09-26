@@ -85,20 +85,20 @@ const links = [
 							<p class="text-base sm:text-lg font-mono bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent font-medium">
 								{profile.role}
 							</p>
+
+							<div class="flex flex-wrap gap-2.5 sm:gap-3 pt-1 font-mono text-xs">
+								<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted flex items-center gap-2">
+									<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Location: {profile.location}
+								</span>
+								<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">
+									Focus: {profile.focus}
+								</span>
+							</div>
 						</div>
 
 						<p class="text-sm sm:text-base text-muted leading-relaxed max-w-5xl font-normal">
 							{profile.description}
 						</p>
-
-						<div class="flex flex-wrap gap-2.5 sm:gap-3 pt-1 sm:pt-2 font-mono text-xs">
-							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted flex items-center gap-2">
-								<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Location: {profile.location}
-							</span>
-							<span class="px-3 py-1.5 rounded-lg bg-surface border border-border text-muted">
-								Focus: {profile.focus}
-							</span>
-						</div>
 
 						<div class="flex flex-wrap gap-2.5 pt-1 font-mono text-xs">
 							{links.map((link) => (
